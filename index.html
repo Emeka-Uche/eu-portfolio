@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emeka Uche | Turning Data Into Growth Stories</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;600;800&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #FAF7F0;
+            --charcoal: #1a1a1a;
+            --rust: #D84315;
+            --sage: #7CB342;
+            --gold: #FFB300;
+            --slate: #455A64;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--cream);
+            color: var(--charcoal);
+            font-family: 'Archivo', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section - Bold Statement */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 2rem;
+            background: 
+                linear-gradient(135deg, rgba(216, 67, 21, 0.05) 0%, transparent 60%),
+                var(--cream);
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .eyebrow {
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--rust);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            opacity: 0;
+            animation: fadeSlideUp 1s ease-out 0.2s forwards;
+        }
+
+        .hero-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2.5rem, 10vw, 7rem);
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            color: var(--charcoal);
+            max-width: 900px;
+            opacity: 0;
+            animation: fadeSlideUp 1s ease-out 0.4s forwards;
+        }
+
+        .hero-title .highlight {
+            color: var(--rust);
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero-description {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            line-height: 1.8;
+            max-width: 650px;
+            color: var(--slate);
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeSlideUp 1s ease-out 0.6s forwards;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeSlideUp 1s ease-out 0.8s forwards;
+        }
+
+        .btn {
+            padding: 1.2rem 2.5rem;
+            font-family: 'Archivo', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border: 3px solid;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            letter-spacing: 0.03em;
+        }
+
+        .btn-primary {
+            background: var(--rust);
+            color: var(--cream);
+            border-color: var(--rust);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            color: var(--rust);
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--charcoal);
+            border-color: var(--charcoal);
+        }
+
+        .btn-secondary:hover {
+            background: var(--charcoal);
+            color: var(--cream);
+        }
+
+        /* Floating Stats */
+        .floating-stats {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            display: grid;
+            gap: 2rem;
+            opacity: 0;
+            animation: fadeSlideLeft 1s ease-out 1s forwards;
+        }
+
+        .stat-bubble {
+            background: white;
+            padding: 2rem;
+            border: 3px solid var(--charcoal);
+            box-shadow: 8px 8px 0 var(--charcoal);
+            min-width: 160px;
+            transition: transform 0.3s;
+        }
+
+        .stat-bubble:hover {
+            transform: rotate(-2deg) scale(1.05);
+        }
+
+        .stat-value {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3rem;
+            color: var(--rust);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--slate);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            z-index: 1000;
+            background: var(--cream);
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s;
+        }
+
+        nav.scrolled {
+            border-bottom-color: var(--charcoal);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.5rem;
+            color: var(--charcoal);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.03em;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--rust);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Impact Stories Section */
+        .section {
+            padding: 8rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-intro {
+            max-width: 800px;
+            margin-bottom: 5rem;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--rust);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1.2;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--slate);
+            line-height: 1.8;
+        }
+
+        /* Impact Cards */
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+        }
+
+        .impact-card {
+            background: white;
+            border: 3px solid var(--charcoal);
+            padding: 3rem;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .impact-card::before {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            right: -6px;
+            width: 100%;
+            height: 100%;
+            background: var(--charcoal);
+            z-index: -1;
+            transition: all 0.4s;
+        }
+
+        .impact-card:hover {
+            transform: translate(3px, 3px);
+        }
+
+        .impact-card:hover::before {
+            bottom: -3px;
+            right: -3px;
+        }
+
+        .impact-number {
+            font-family: 'DM Serif Display', serif;
+            font-size: 4rem;
+            color: var(--rust);
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+
+        .impact-title {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--charcoal);
+        }
+
+        .impact-description {
+            color: var(--slate);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .impact-context {
+            font-size: 0.9rem;
+            color: var(--rust);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Case Study Section */
+        .case-study {
+            background: var(--charcoal);
+            color: var(--cream);
+            padding: 8rem 2rem;
+            margin: 4rem 0;
+        }
+
+        .case-study-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .case-study-visual {
+            background: var(--rust);
+            padding: 3rem;
+            border: 3px solid var(--cream);
+            position: relative;
+        }
+
+        .case-study-visual::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--cream);
+            z-index: -1;
+        }
+
+        .metric-showcase {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .metric-box {
+            text-align: center;
+            padding: 1.5rem;
+            border: 2px solid var(--cream);
+        }
+
+        .metric-box-value {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-box-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .case-study-text h3 {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--cream);
+        }
+
+        .case-study-text p {
+            font-size: 1.1rem;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+            color: var(--cream);
+            opacity: 0.9;
+        }
+
+        .case-tag {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background: transparent;
+            border: 2px solid var(--sage);
+            color: var(--sage);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-right: 1rem;
+            margin-top: 1rem;
+        }
+
+        /* What I Do Section */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            border: 3px solid var(--charcoal);
+        }
+
+        .expertise-item {
+            padding: 3rem 2rem;
+            border-right: 3px solid var(--charcoal);
+            border-bottom: 3px solid var(--charcoal);
+            background: white;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .expertise-item:nth-child(3n) {
+            border-right: none;
+        }
+
+        .expertise-item:nth-last-child(-n+3) {
+            border-bottom: none;
+        }
+
+        .expertise-item:hover {
+            background: var(--charcoal);
+            color: var(--cream);
+        }
+
+        .expertise-item:hover .expertise-icon {
+            color: var(--rust);
+        }
+
+        .expertise-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            transition: color 0.3s;
+        }
+
+        .expertise-name {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .expertise-desc {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            opacity: 0.8;
+        }
+
+        /* Journey Timeline */
+        .timeline {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--charcoal);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            margin: 4rem 0;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+            text-align: left;
+            padding-left: 3rem;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-right: auto;
+            text-align: right;
+            padding-right: 3rem;
+        }
+
+        .timeline-content {
+            width: 48%;
+            background: white;
+            padding: 2rem;
+            border: 3px solid var(--charcoal);
+            position: relative;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            top: 2rem;
+            width: 20px;
+            height: 20px;
+            background: var(--rust);
+            border: 3px solid var(--charcoal);
+            border-radius: 50%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .timeline-year {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2rem;
+            color: var(--rust);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-role {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-company {
+            color: var(--slate);
+            margin-bottom: 1rem;
+        }
+
+        .timeline-highlight {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--slate);
+        }
+
+        /* Tools Section - Visual Grid */
+        .tools-mosaic {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tool-card {
+            aspect-ratio: 1;
+            background: white;
+            border: 3px solid var(--charcoal);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            cursor: default;
+        }
+
+        .tool-card:hover {
+            background: var(--charcoal);
+            color: var(--cream);
+            transform: scale(1.05);
+        }
+
+        .tool-name {
+            font-weight: 800;
+            font-size: 1rem;
+            text-align: center;
+            margin-top: 0.5rem;
+        }
+
+        .tool-icon {
+            font-size: 2rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: var(--sage);
+            padding: 8rem 2rem;
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-section h2 {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .contact-section p {
+            font-size: 1.3rem;
+            color: white;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            line-height: 1.8;
+        }
+
+        .contact-methods {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 2rem 2.5rem;
+            border: 3px solid var(--charcoal);
+            box-shadow: 6px 6px 0 var(--charcoal);
+            text-decoration: none;
+            color: var(--charcoal);
+            transition: all 0.3s;
+            min-width: 200px;
+        }
+
+        .contact-card:hover {
+            transform: translate(3px, 3px);
+            box-shadow: 3px 3px 0 var(--charcoal);
+        }
+
+        .contact-card-label {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            color: var(--rust);
+            font-weight: 600;
+        }
+
+        .contact-card-value {
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: var(--cream);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.7;
+        }
+
+        /* Animations */
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeSlideLeft {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .floating-stats {
+                position: static;
+                transform: none;
+                grid-template-columns: repeat(2, 1fr);
+                margin-top: 4rem;
+            }
+
+            .case-study-content {
+                grid-template-columns: 1fr;
+            }
+
+            .expertise-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .expertise-item:nth-child(2n) {
+                border-right: none;
+            }
+
+            .expertise-item:nth-last-child(-n+2) {
+                border-bottom: none;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-content {
+                width: calc(100% - 60px);
+                margin-left: auto !important;
+                text-align: left !important;
+                padding-left: 3rem !important;
+                padding-right: 2rem !important;
+            }
+
+            .timeline-dot {
+                left: 20px;
+                transform: translateX(-50%);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .expertise-item {
+                border-right: none !important;
+            }
+
+            .expertise-item:not(:last-child) {
+                border-bottom: 3px solid var(--charcoal) !important;
+            }
+
+            .tools-mosaic {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+
+            .contact-methods {
+                flex-direction: column;
+            }
+
+            .contact-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="nav">
+        <div class="nav-content">
+            <a href="#" class="logo">EU</a>
+            <ul class="nav-links">
+                <li><a href="#impact">Impact</a></li>
+                <li><a href="#expertise">Expertise</a></li>
+                <li><a href="#journey">Journey</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="eyebrow">Data Analyst • Growth Strategist • Lagos, Nigeria</div>
+            <h1 class="hero-title">
+                I turn data into <span class="highlight">growth stories</span>
+            </h1>
+            <p class="hero-description">
+                From Andela to Squad, I've helped fintech and tech companies unlock 165% revenue growth, 
+                boost user conversions by 45%, and make data-driven decisions that actually move the needle. 
+                Not just charts—real business impact.
+            </p>
+            <div class="hero-cta">
+                <a href="#impact" class="btn btn-primary">See My Impact</a>
+                <a href="#contact" class="btn btn-secondary">Let's Talk</a>
+            </div>
+        </div>
+
+        <div class="floating-stats">
+            <div class="stat-bubble">
+                <div class="stat-value">15M+</div>
+                <div class="stat-label">Rows/Day</div>
+            </div>
+            <div class="stat-bubble">
+                <div class="stat-value">165%</div>
+                <div class="stat-label">Revenue Growth</div>
+            </div>
+            <div class="stat-bubble">
+                <div class="stat-value">6+</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Stories -->
+    <section class="section" id="impact">
+        <div class="section-intro">
+            <div class="section-label">Real Results</div>
+            <h2 class="section-title">Impact that matters</h2>
+            <p class="section-description">
+                I don't just analyze data—I solve business problems. Here are some stories of how 
+                data-driven insights created measurable impact.
+            </p>
+        </div>
+
+        <div class="impact-grid">
+            <div class="impact-card">
+                <div class="impact-number">45%</div>
+                <h3 class="impact-title">Conversion Rate Breakthrough</h3>
+                <p class="impact-description">
+                    Designed and executed A/B testing for a new pop-up modal at Andela. Through rigorous 
+                    testing, hypothesis validation, and iterative optimization, we achieved a 45% lift in 
+                    user conversions over 3 months—turning more visitors into active users.
+                </p>
+                <div class="impact-context">Andela • 2024</div>
+            </div>
+
+            <div class="impact-card">
+                <div class="impact-number">165%</div>
+                <h3 class="impact-title">Revenue Explosion</h3>
+                <p class="impact-description">
+                    Coordinated budget planning and monthly strategy for Squad's Value Added Services team. 
+                    By identifying high-value growth levers, setting clear KPIs, and monitoring performance 
+                    daily, we grew VAS revenue by 165% from 2022 to 2023.
+                </p>
+                <div class="impact-context">Squad by HabariPay • 2022-2023</div>
+            </div>
+
+            <div class="impact-card">
+                <div class="impact-number">33%</div>
+                <h3 class="impact-title">Retention Rescue</h3>
+                <p class="impact-description">
+                    Calculated NPS scores using Medallia and analyzed multi-channel feedback (web, app, 
+                    surveys). Uncovered critical pain points causing churn, implemented targeted fixes, 
+                    and improved user retention by 33% through data-informed product improvements.
+                </p>
+                <div class="impact-context">Andela • 2024</div>
+            </div>
+
+            <div class="impact-card">
+                <div class="impact-number">90%</div>
+                <h3 class="impact-title">Data Quality Transformation</h3>
+                <p class="impact-description">
+                    Built comprehensive data quality checks across key sources at Andela. Reduced data 
+                    ingestion inconsistencies by 90%, ensuring reliable analytics and enabling confident 
+                    decision-making across the organization.
+                </p>
+                <div class="impact-context">Andela • 2024</div>
+            </div>
+
+            <div class="impact-card">
+                <div class="impact-number">99%</div>
+                <h3 class="impact-title">Transaction Success Rate</h3>
+                <p class="impact-description">
+                    Led team of 8 analysts monitoring 15M+ daily transactions. Developed metrics, KPIs, 
+                    and real-time dashboards that helped maintain a 99% daily transaction success rate 
+                    for Squad's fintech payment platform.
+                </p>
+                <div class="impact-context">Squad by HabariPay • 2021-2024</div>
+            </div>
+
+            <div class="impact-card">
+                <div class="impact-number">20%</div>
+                <h3 class="impact-title">Engagement Boost</h3>
+                <p class="impact-description">
+                    Combined user behavior data with customer surveys at GTBank to deliver actionable 
+                    recommendations. These insights drove marketing strategies that increased user 
+                    engagement by 20% within months.
+                </p>
+                <div class="impact-context">GTBank • 2019-2021</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Case Study -->
+    <section class="case-study">
+        <div class="case-study-content">
+            <div class="case-study-visual">
+                <div class="metric-showcase">
+                    <div class="metric-box">
+                        <div class="metric-box-value">15</div>
+                        <div class="metric-box-label">Partner Groups</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-box-value">5+</div>
+                        <div class="metric-box-label">KPIs Tracked</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-box-value">100%</div>
+                        <div class="metric-box-label">Launch Success</div>
+                    </div>
+                    <div class="metric-box">
+                        <div class="metric-box-value">$</div>
+                        <div class="metric-box-label">Revenue Model</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-study-text">
+                <h3>Partnership App Launch</h3>
+                <p>
+                    When Andela launched a new partnership app with 15 pilot groups, they needed more 
+                    than just basic metrics—they needed a complete analytics strategy.
+                </p>
+                <p>
+                    I led the data strategy from day one: defining success metrics, tracking onboarding 
+                    completion rates, first login rates, marketing opt-ins, and activity retention. 
+                    I also developed a per-user revenue model to quantify impact and prioritize the 
+                    highest-value growth opportunities.
+                </p>
+                <p>
+                    The result? A successful pilot with clear data-backed insights that guided product 
+                    decisions and partnership strategies going forward.
+                </p>
+                <div>
+                    <span class="case-tag">Product Analytics</span>
+                    <span class="case-tag">Web Analytics</span>
+                    <span class="case-tag">Revenue Modeling</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What I Do -->
+    <section class="section" id="expertise">
+        <div class="section-intro">
+            <div class="section-label">Capabilities</div>
+            <h2 class="section-title">What I bring to the table</h2>
+            <p class="section-description">
+                I'm not just proficient in tools—I solve real business problems with data.
+            </p>
+        </div>
+
+        <div class="expertise-grid">
+            <div class="expertise-item">
+                <span class="expertise-icon">📊</span>
+                <h3 class="expertise-name">Product Analytics</h3>
+                <p class="expertise-desc">
+                    From user segmentation to cohort analysis, I uncover how users interact with products 
+                    and where to optimize for growth.
+                </p>
+            </div>
+
+            <div class="expertise-item">
+                <span class="expertise-icon">🔬</span>
+                <h3 class="expertise-name">A/B Testing & Experimentation</h3>
+                <p class="expertise-desc">
+                    Design experiments, run statistical tests, and validate hypotheses to drive 
+                    data-backed product decisions.
+                </p>
+            </div>
+
+            <div class="expertise-item">
+                <span class="expertise-icon">💰</span>
+                <h3 class="expertise-name">Revenue Modeling</h3>
+                <p class="expertise-desc">
+                    Build models that quantify impact, identify monetization drivers, and prioritize 
+                    the highest-value growth levers.
+                </p>
+            </div>
+
+            <div class="expertise-item">
+                <span class="expertise-icon">📈</span>
+                <h3 class="expertise-name">Data Visualization</h3>
+                <p class="expertise-desc">
+                    Create dashboards in Tableau, PowerBI, and Looker that tell clear stories and 
+                    enable real-time decision-making.
+                </p>
+            </div>
+
+            <div class="expertise-item">
+                <span class="expertise-icon">🎯</span>
+                <h3 class="expertise-name">KPI Strategy</h3>
+                <p class="expertise-desc">
+                    Define the right metrics that actually matter, track them rigorously, and ensure 
+                    they align with business objectives.
+                </p>
+            </div>
+
+            <div class="expertise-item">
+                <span class="expertise-icon">🤖</span>
+                <h3 class="expertise-name">Machine Learning</h3>
+                <p class="expertise-desc">
+                    Apply ML techniques for predictive analytics, customer segmentation, and pattern 
+                    recognition at scale.
+                </p>
+            </div>
+
+            <div class="expertise-item">
+                <span class="expertise-icon">⚙️</span>
+                <h3 class="expertise-name">Data Infrastructure</h3>
+                <p class="expertise-desc">
+                    Work with BigQuery, Snowflake, Redshift, and Spark to build robust data pipelines 
+                    and ensure data quality.
+                </p>
+            </div>
+
+            <div class="expertise-item">
+                <span class="expertise-icon">👥</span>
+                <h3 class="expertise-name">Leadership & Collaboration</h3>
+                <p class="expertise-desc">
+                    Led cross-functional teams, presented to executives, and translated complex insights 
+                    into actionable strategies.
+                </p>
+            </div>
+
+            <div class="expertise-item">
+                <span class="expertise-icon">💳</span>
+                <h3 class="expertise-name">Fintech Expertise</h3>
+                <p class="expertise-desc">
+                    Deep experience analyzing payment data, transaction flows, and financial metrics in 
+                    high-volume environments.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Journey Timeline -->
+    <section class="section" id="journey">
+        <div class="section-intro">
+            <div class="section-label">My Path</div>
+            <h2 class="section-title">The journey so far</h2>
+            <p class="section-description">
+                From engineering graduate to leading data teams at top fintech companies.
+            </p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2024 - Now</div>
+                    <div class="timeline-role">Senior Data Analyst</div>
+                    <div class="timeline-company">Andela (US, Remote)</div>
+                    <p class="timeline-highlight">
+                        Leading analytics for partnership initiatives, driving 45% conversion improvements 
+                        and 33% retention gains through data-driven strategies.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2021 - 2024</div>
+                    <div class="timeline-role">Senior Product Analyst (Team Lead)</div>
+                    <div class="timeline-company">Squad by HabariPay</div>
+                    <p class="timeline-highlight">
+                        Managed team of 8, analyzed 15M+ daily transactions, and delivered 165% VAS revenue 
+                        growth through strategic planning and KPI optimization.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2019 - 2021</div>
+                    <div class="timeline-role">Data Analyst</div>
+                    <div class="timeline-company">GTBank</div>
+                    <p class="timeline-highlight">
+                        Built dashboards and delivered insights that increased user engagement by 20% 
+                        through combined behavioral and survey analysis.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2017 - 2018</div>
+                    <div class="timeline-role">Data Analyst</div>
+                    <div class="timeline-company">Ajaokuta Steel Company</div>
+                    <p class="timeline-highlight">
+                        Started my analytics journey analyzing business operations and providing 
+                        process improvement recommendations.
+                    </p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="timeline-year">2016</div>
+                    <div class="timeline-role">Computer Engineering Graduate</div>
+                    <div class="timeline-company">Michael Okpara University</div>
+                    <p class="timeline-highlight">
+                        Graduated with Second Class Honors (Upper Division), combining engineering 
+                        thinking with data passion.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Mosaic -->
+    <section class="section">
+        <div class="section-intro">
+            <div class="section-label">Tech Stack</div>
+            <h2 class="section-title">Tools I use daily</h2>
+        </div>
+
+        <div class="tools-mosaic">
+            <div class="tool-card">
+                <div class="tool-icon">🐍</div>
+                <div class="tool-name">Python</div>
+            </div>
+            <div class="tool-card">
+                <div class="tool-icon">🗃️</div>
+                <div class="tool-name">SQL</div>
+            </div>
+            <div class="tool-card">
+                <div class="tool-icon">📊</div>
+                <div class="tool-name">Tableau</div>
+            </div>
+            <div class="tool-card">
+                <div class="tool-icon">📈</div>
+                <div class="tool-name">PowerBI</div>
+            </div>
+            <div class="tool-card">
+                <div class="tool-icon">🔍</div>
+                <div class="tool-name">Looker</div>
+            </div>
+            <div class="tool-card">
+                <div class="tool-icon">☁️</div>
+                <div class="tool-name">BigQuery</div>
+            </div>
+            <div class="tool-card">
+                <div class="tool-icon">❄️</div>
+                <div class="tool-name">Snowflake</div>
+            </div>
+            <div class="tool-card">
+                <div class="tool-icon">🔧</div>
+                <div class="tool-name">Airflow</div>
+            </div>
+            <div class="tool-card">
+                <div class="tool-icon">⚡</div>
+                <div class="tool-name">Spark</div>
+            </div>
+            <div class="tool-card">
+                <div class="tool-icon">📱</div>
+                <div class="tool-name">Mixpanel</div>
+            </div>
+            <div class="tool-card">
+                <div class="tool-icon">🎯</div>
+                <div class="tool-name">Analytics</div>
+            </div>
+            <div class="tool-card">
+                <div class="tool-icon">🧪</div>
+                <div class="tool-name">Optimizely</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact-section" id="contact">
+        <div class="contact-content">
+            <h2>Let's create impact together</h2>
+            <p>
+                Whether you need someone to lead data strategy, build analytics infrastructure, 
+                or turn insights into growth—I'm here to help.
+            </p>
+
+            <div class="contact-methods">
+                <a href="mailto:emekauche.dev@gmail.com" class="contact-card">
+                    <div class="contact-card-label">Email</div>
+                    <div class="contact-card-value">emekauche.dev@gmail.com</div>
+                </a>
+
+                <a href="https://linkedin.com/in/emeka-uche" target="_blank" class="contact-card">
+                    <div class="contact-card-label">LinkedIn</div>
+                    <div class="contact-card-value">Connect with me</div>
+                </a>
+
+                <a href="tel:+2349031929977" class="contact-card">
+                    <div class="contact-card-label">Phone</div>
+                    <div class="contact-card-value">+234 903 192 9977</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Emeka Uche. Built with purpose, not templates.</p>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all impact cards and expertise items
+        document.querySelectorAll('.impact-card, .expertise-item, .timeline-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
